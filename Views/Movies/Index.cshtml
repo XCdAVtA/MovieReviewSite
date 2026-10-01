@@ -1,0 +1,41 @@
+@model IEnumerable<MoviesAdmin.Models.Movie>
+
+@{
+    ViewData["Title"] = "Movies";
+}
+
+<h1>Movies</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add New Movie</a>
+</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(m => m.Title)</th>
+        <th>@Html.DisplayNameFor(m => m.Genre)</th>
+        <th>@Html.DisplayNameFor(m => m.Rating)</th>
+        <th>Runtime</th>
+        <th>@Html.DisplayNameFor(m => m.ReleaseDate)</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>@movie.Title</td>
+                <td>@movie.Genre</td>
+                <td>@movie.Rating</td>
+                <td>@movie.RuntimeHours h @movie.RuntimeMinutes m</td>
+                <td>@movie.ReleaseDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@movie.Id">View</a> |
+                    <a asp-action="Edit" asp-route-id="@movie.Id">Edit</a> |
+                    <a asp action="Delete" asp-route-id="@movie.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
