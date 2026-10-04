@@ -29,3 +29,64 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+:root {
+  --brand-green: #8fd19e;
+  --brand-green-dark: #6bbf80;
+  --brand-dark: #2f3640;
+  --brand-light: #f4f6f5;
+  --brand-muted: #6c757d;
+}
+
+body {
+  background-color: var(--brand-light);
+  color: var(--brand-dark);
+}
+
+.brand-navbar {
+  background-color: var(--brand-dark);
+}
+
+.brand-navbar .navbar-brand {
+  color: var(--brand-green);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.brand-navbar .nav-link {
+  color: #ffffff;
+}
+
+.brand-navbar .nav-link:hover {
+  color: var(--brand-green);
+}
+
+.btn-primary:hover,
+.brn-primary:focus {
+  background-color: var(--brand-green-dark);
+  border-color: var(--brand-green-dark);
+  color: var(--brand-dark);
+}
+
+h1 {
+  color: var(--brand-dark);
+}
+
+a {
+  color: var(--brand-green-dark);
+}
+
+.table thead th {
+  background-color: var(--brand-dark);
+  color: #ffffff;
+}
+
+.brand-header {
+  background-color: var(--brand-light);
+  padding: 1rem 0 0.5rem;
+}
+
+.brand-logo {
+  height: 200px;
+  max-width: 100%;
+}
