@@ -1,18 +1,18 @@
 @model IEnumerable<MoviesAdmin.Models.Movie>
 
-@{
-    ViewData["Title"] = "Movies";
-}
+@{ ViewData["Title"] = "Movies"; }
 
 <h1>Movies</h1>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary">Add New Movie</a>
-</p>
+@if (User.IsInRole("administrator"))
+{
+    <p><a asp-action="Create" class="btn btn-primary">Add New Movie</a></p>
+}
 
-<table class="table">
+<table class="table align-middle">
     <thead>
     <tr>
+        <th></th>
         <th>@Html.DisplayNameFor(m => m.Title)</th>
         <th>@Html.DisplayNameFor(m => m.Genre)</th>
         <th>@Html.DisplayNameFor(m => m.Rating)</th>
@@ -22,20 +22,29 @@
     </tr>
     </thead>
     <tbody>
-        @foreach (var movie in Model)
-        {
-            <tr>
-                <td>@movie.Title</td>
-                <td>@movie.Genre</td>
-                <td>@movie.Rating</td>
-                <td>@movie.RuntimeHours h @movie.RuntimeMinutes m</td>
-                <td>@movie.ReleaseDate.ToString("yyyy-MM-dd")</td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@movie.Id">View</a> |
-                    <a asp-action="Edit" asp-route-id="@movie.Id">Edit</a> |
-                    <a asp action="Delete" asp-route-id="@movie.Id">Delete</a>
-                </td>
-            </tr>
-        }
+    @foreach (var movie in Model)
+    {
+        <tr>
+            <td>
+                @if (!string.IsNullOrEmpty(movie.PosterUrl))
+                {
+                    <img src="@movie.PosterUrl" alt="@movie.Title poster" class="poster-thumb" />
+                }
+            </td>
+            <td>@movie.Title</td>
+            <td>@movie.Genre</td>
+            <td>@movie.Rating</td>
+            <td>@movie.RuntimeHours h @movie.RuntimeMinutes m</td>
+            <td>@movie.ReleaseDate.ToString("yyyy-MM-dd")</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@movie.Id">View</a>
+                @if (User.IsInRole("administrator"))
+                {
+                    <span> | </span><a asp-action="Edit" asp-route-id="@movie.Id">Edit</a>
+                    <span> | </span><a asp-action="Delete" asp-route-id="@movie.Id">Delete</a>
+                }
+            </td>
+        </tr>
+    }
     </tbody>
 </table>

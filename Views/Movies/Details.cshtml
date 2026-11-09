@@ -6,24 +6,45 @@
 
 <h1>@Model.Title</h1>
 
-<dl class="row">
-    <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Genre)</dt>
-    <dd class="col-sm-10">@Model.Genre</dd>
+<div class="row">
+    <div class="col-md-4 mb-3">
+        @if (!string.IsNullOrEmpty(Model.PosterUrl))
+        {
+            <img src="@Model.PosterUrl" alt="@Model.Title poster" class="poster-large" />
+        }
+    </div>
 
-    <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Rating)</dt>
-    <dd class="col-sm-10">@Model.Rating</dd>
+    <div class="col-md-8">
+        <dl class="row">
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Genre)</dt>
+            <dd class="col-sm-9">@Model.Genre</dd>
 
-    <dt class="col-sm-2">Runtime</dt>
-    <dd class="col-sm-10">@Model.RuntimeHours h @Model.RuntimeMinutes m</dd>
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Rating)</dt>
+            <dd class="col-sm-9">@Model.Rating</dd>
 
-    <dt class="col-sm-2">@Html.DisplayNameFor(m => m.ReleaseDate)</dt>
-    <dd class="col-sm-10">@Model.ReleaseDate.ToString("MMMM d, yyyy")</dd>
+            <dt class="col-sm-3">Runtime</dt>
+            <dd class="col-sm-9">@Model.RuntimeHours h @Model.RuntimeMinutes m</dd>
 
-    <dt class="col-sm-2">@Html.DisplayNameFor(m => m.Synopsis)</dt>
-    <dd class="col-sm-10">@Model.Synopsis</dd>
-</dl>
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.ReleaseDate)</dt>
+            <dd class="col-sm-9">@Model.ReleaseDate.ToString("MMMM d, yyyy")</dd>
+
+            <dt class="col-sm-3">Published Reviews</dt>
+            <dd class="col-sm-9">@ViewBag.PublishedReviewCount</dd>
+
+            <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Synopsis)</dt>
+            <dd class="col-sm-9">@Model.Synopsis</dd>
+        </dl>
+    </div>
+</div>
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    @if (User.IsInRole("administrator"))
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+    }
+    @if (User.IsInRole("critic"))
+    {
+        <a asp-controller="Reviews" asp-action="Create" asp-route-movieId="@Model.Id" class="btn btn-success">Write a Review</a>
+    }
     <a asp-action="Index" class="btn btn-secondary">Back to List</a>
 </div>

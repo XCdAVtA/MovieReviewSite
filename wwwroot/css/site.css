@@ -61,11 +61,23 @@ body {
   color: var(--brand-green);
 }
 
-.btn-primary:hover,
-.brn-primary:focus {
-  background-color: var(--brand-green-dark);
-  border-color: var(--brand-green-dark);
-  color: var(--brand-dark);
+.btn-primary {
+  --bs-btn-color: #ffffff;
+  --bs-btn-bg: var(--brand-dark);
+  --bs-btn-border-color: var(--brand-dark);
+
+  --bs-btn-hover-color: var(--brand-dark);
+  --bs-btn-hover-bg: var(--brand-green);
+  --bs-btn-hover-border-color: var(--brand-green);
+
+  --bs-btn-active-color: var(--brand-dark);
+  --bs-btn-active-bg: var(--brand-green-dark);
+  --bs-btn-active-border-color: var(--brand-green-dark);
+
+  --bs-btn-focus-shadow-rgb: 143, 209, 158;
+
+  --bs-btn-disabled-bg: var(--brand-dark);
+  --bs-btn-disabled-border-color: var(--brand-dark);
 }
 
 h1 {
@@ -90,3 +102,6 @@ a {
   height: 200px;
   max-width: 100%;
 }
+
+.poster-thumb { width: 60px; height: 90px; object-fit: cover; border-radius: 4px; }
+.poster-large { width: 100%; max-width: 300px; height: auto; border-radius: 6px; }

@@ -6,7 +6,7 @@
 
 <h1>Add Movie</h1>
 
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="mb-3">
@@ -49,6 +49,12 @@
         <label asp-for="ReleaseDate" class="form-label"></label>
         <input asp-for="ReleaseDate" class="form-control" />
         <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+    </div>
+    
+    <div class="mb-3">
+        <label for="ImageUpload" class="form-label">Poster Image</label>
+        <input type="file" id="ImageUpload" name="ImageUpload" accept="image/*" class="form-control" />
+        @Html.ValidationMessage("ImageUpload", new { @class = "text-danger" })
     </div>
     
     <button type="submit" class="btn btn-primary">Create</button>

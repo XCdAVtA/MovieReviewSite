@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace MoviesAdmin.Models;
 
@@ -19,4 +20,9 @@ public class Movie
     [Range(0, 59), Display(Name = "Runtime (minutes)")] public int RuntimeMinutes { get; set; }
     
     [DataType(DataType.Date), Display(Name = "Release Date")] public DateTime ReleaseDate { get; set; }
+
+    public string PosterUrl { get; set; } = string.Empty;  // url of the image in blob storage
+
+    [ValidateNever, ScaffoldColumn(false)] 
+    public List<Review> Reviews { get; set; } = new List<Review>();
 }
