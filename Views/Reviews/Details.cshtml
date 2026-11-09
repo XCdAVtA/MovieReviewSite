@@ -1,0 +1,30 @@
+@model MoviesAdmin.Models.Review
+
+@{
+    ViewData["Title"] = "Review Details";
+}
+
+<h1>Review: @Model.Movie.Title</h1>
+
+<dl class="row">
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Rating)</dt>
+    <dd class="col-sm-9">@Model.Rating / 5</dd>
+
+    <dt class="col-sm-3">Status</dt>
+    <dd class="col-sm-9">@(Model.IsPublished ? "Published" : "Draft")</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.CreatedDate)</dt>
+    <dd class="col-sm-9">@Model.CreatedDate.ToString("MMMM d, yyyy")</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Text)</dt>
+    <dd class="col-sm-9" style="white-space: pre-line;">@Model.Text</dd>
+</dl>
+
+<div>
+    @if (!Model.IsPublished)
+    {
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+        <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger">Delete</a>
+    }
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

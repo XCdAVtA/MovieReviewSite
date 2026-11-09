@@ -1,0 +1,31 @@
+@model IEnumerable<MoviesAdmin.Models.Review>
+
+@{ ViewData["Title"] = "My Reviews"; }
+
+<h1>My Reviews</h1>
+<p><a asp-action="Create" class="btn btn-primary">Write a Review</a></p>
+
+<table class="table">
+    <thead>
+    <tr><th>Movie</th><th>Rating</th><th>Status</th><th>Created</th><th></th></tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Movie.Title</td>
+            <td>@item.Rating / 5</td>
+            <td>@(item.IsPublished ? "Published" : "Draft")</td>
+            <td>@item.CreatedDate.ToString("yyyy-MM-dd")</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                @if (!item.IsPublished)
+                {
+                    <span> | </span><a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                    <span> | </span><a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

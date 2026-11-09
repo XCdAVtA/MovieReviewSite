@@ -1,0 +1,26 @@
+@model MoviesAdmin.Models.Review
+
+@{
+    ViewData["Title"] = "Delete Review";
+}
+
+<h1>Delete Review</h1>
+
+<h3 class="text-danger">Are you sure you want to delete this draft?</h3>
+
+<dl class="row">
+    <dt class="col-sm-3">Movie</dt>
+    <dd class="col-sm-9">@Model.Movie.Title</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Rating)</dt>
+    <dd class="col-sm-9">@Model.Rating / 5</dd>
+
+    <dt class="col-sm-3">@Html.DisplayNameFor(m => m.Text)</dt>
+    <dd class="col-sm-9" style="white-space: pre-line;">@Model.Text</dd>
+</dl>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
