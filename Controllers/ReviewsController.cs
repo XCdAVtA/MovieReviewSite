@@ -15,8 +15,7 @@ public class ReviewsController : Controller
     private string _userId = string.Empty;
 
     public ReviewsController(MoviesContext context) => _context = context;
-
-    // User is not available in the constructor, so read it here (same trick as the reference)
+    
     public override void OnActionExecuting(ActionExecutingContext context)
     {
         base.OnActionExecuting(context);

@@ -11,6 +11,8 @@ public class MoviesContext : DbContext
     
     public DbSet<Review> Reviews { get; set; }
 
+    public DbSet<AppUser> Users { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Review>()
